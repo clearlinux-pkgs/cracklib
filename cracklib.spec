@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.5
-Release  : 18
+Release  : 19
 URL      : http://downloads.sourceforge.net/cracklib/cracklib-2.9.5.tar.gz
 Source0  : http://downloads.sourceforge.net/cracklib/cracklib-2.9.5.tar.gz
 Summary  : No detailed summary available
@@ -47,6 +47,7 @@ Group: Development
 Requires: cracklib-lib
 Requires: cracklib-bin
 Requires: cracklib-data
+Provides: cracklib-devel
 
 %description dev
 dev components for the cracklib package.
@@ -94,6 +95,13 @@ make VERBOSE=1 V=1 %{?_smp_mflags} check
 rm -rf %{buildroot}
 %make_install
 %find_lang cracklib
+## make_install_append content
+chmod 755 util/cracklib-format util/cracklib-packer
+util/cracklib-format dicts/cracklib-small | util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
+gzip -9 %{buildroot}%{_datadir}/cracklib/pw_dict.pwd
+rm %{buildroot}%{_datadir}/cracklib/cracklib-small
+rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -108,8 +116,9 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/cracklib/cracklib-small
-/usr/share/cracklib/cracklib.magic
+/usr/share/cracklib/pw_dict.hwm
+/usr/share/cracklib/pw_dict.pwd.gz
+/usr/share/cracklib/pw_dict.pwi
 
 %files dev
 %defattr(-,root,root,-)
