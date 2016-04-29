@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.5
-Release  : 19
+Release  : 20
 URL      : http://downloads.sourceforge.net/cracklib/cracklib-2.9.5.tar.gz
 Source0  : http://downloads.sourceforge.net/cracklib/cracklib-2.9.5.tar.gz
 Summary  : No detailed summary available
