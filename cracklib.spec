@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.5
-Release  : 22
+Release  : 23
 URL      : http://downloads.sourceforge.net/cracklib/cracklib-2.9.5.tar.gz
 Source0  : http://downloads.sourceforge.net/cracklib/cracklib-2.9.5.tar.gz
 Summary  : No detailed summary available
@@ -15,7 +15,6 @@ Requires: cracklib-lib
 Requires: cracklib-data
 Requires: cracklib-locales
 Requires: cracklib-python
-BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
 
 %description
@@ -82,10 +81,12 @@ python components for the cracklib package.
 %setup -q -n cracklib-2.9.5
 
 %build
+export LANG=C
 %configure --disable-static --with-default-dict-path=/usr/share/cracklib/pw_dict
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
