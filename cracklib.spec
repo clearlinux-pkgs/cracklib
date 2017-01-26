@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.6
-Release  : 25
+Release  : 26
 URL      : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ Requires: cracklib-locales
 Requires: cracklib-python
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
+Patch1: cve-2016-6318.patch
 
 %description
 This package is an updated/modernized distribution of CrackLib as
@@ -80,10 +81,11 @@ python components for the cracklib package.
 
 %prep
 %setup -q -n cracklib-2.9.6
+%patch1 -p1
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1485455348
+export SOURCE_DATE_EPOCH=1485456020
 %configure --disable-static --with-default-dict-path=/usr/share/cracklib/pw_dict
 make V=1  %{?_smp_mflags}
 
@@ -95,7 +97,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1485455348
+export SOURCE_DATE_EPOCH=1485456020
 rm -rf %{buildroot}
 %make_install
 %find_lang cracklib
