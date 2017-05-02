@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.6
-Release  : 26
+Release  : 27
 URL      : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Summary  : No detailed summary available
