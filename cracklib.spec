@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.6
-Release  : 27
+Release  : 28
 URL      : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Summary  : No detailed summary available
@@ -16,6 +16,7 @@ Requires: cracklib-data
 Requires: cracklib-locales
 Requires: cracklib-python
 BuildRequires : pkgconfig(zlib)
+BuildRequires : python
 BuildRequires : python-dev
 Patch1: cve-2016-6318.patch
 
@@ -84,8 +85,15 @@ python components for the cracklib package.
 %patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1485456020
+export SOURCE_DATE_EPOCH=1503074643
+export CFLAGS="$CFLAGS -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -fstack-protector-strong "
+export FFLAGS="$CFLAGS -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong "
 %configure --disable-static --with-default-dict-path=/usr/share/cracklib/pw_dict
 make V=1  %{?_smp_mflags}
 
@@ -93,11 +101,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1485456020
+export SOURCE_DATE_EPOCH=1503074643
 rm -rf %{buildroot}
 %make_install
 %find_lang cracklib
@@ -138,7 +146,7 @@ rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
 
 %files locales -f cracklib.lang
 %defattr(-,root,root,-)
