@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.6
-Release  : 28
+Release  : 29
 URL      : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Summary  : No detailed summary available
@@ -14,7 +14,7 @@ Requires: cracklib-bin
 Requires: cracklib-lib
 Requires: cracklib-data
 Requires: cracklib-locales
-Requires: cracklib-python
+Requires: cracklib-legacypython
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python
 BuildRequires : python-dev
@@ -55,6 +55,14 @@ Provides: cracklib-devel
 dev components for the cracklib package.
 
 
+%package legacypython
+Summary: legacypython components for the cracklib package.
+Group: Default
+
+%description legacypython
+legacypython components for the cracklib package.
+
+
 %package lib
 Summary: lib components for the cracklib package.
 Group: Libraries
@@ -72,14 +80,6 @@ Group: Default
 locales components for the cracklib package.
 
 
-%package python
-Summary: python components for the cracklib package.
-Group: Default
-
-%description python
-python components for the cracklib package.
-
-
 %prep
 %setup -q -n cracklib-2.9.6
 %patch1 -p1
@@ -89,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503074643
+export SOURCE_DATE_EPOCH=1505000569
 export CFLAGS="$CFLAGS -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -fstack-protector-strong "
 export FFLAGS="$CFLAGS -fstack-protector-strong "
@@ -105,7 +105,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1503074643
+export SOURCE_DATE_EPOCH=1505000569
 rm -rf %{buildroot}
 %make_install
 %find_lang cracklib
@@ -139,14 +139,14 @@ rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
 /usr/include/*.h
 /usr/lib64/libcrack.so
 
+%files legacypython
+%defattr(-,root,root,-)
+/usr/lib/python2*/*
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libcrack.so.2
 /usr/lib64/libcrack.so.2.9.0
-
-%files python
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files locales -f cracklib.lang
 %defattr(-,root,root,-)
