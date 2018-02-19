@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.6
-Release  : 30
+Release  : 31
 URL      : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Summary  : No detailed summary available
@@ -14,10 +14,9 @@ Requires: cracklib-bin
 Requires: cracklib-lib
 Requires: cracklib-data
 Requires: cracklib-locales
-Requires: cracklib-legacypython
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python
-BuildRequires : python-dev
+BuildRequires : python3-dev
 Patch1: cve-2016-6318.patch
 
 %description
@@ -55,14 +54,6 @@ Provides: cracklib-devel
 dev components for the cracklib package.
 
 
-%package legacypython
-Summary: legacypython components for the cracklib package.
-Group: Default
-
-%description legacypython
-legacypython components for the cracklib package.
-
-
 %package lib
 Summary: lib components for the cracklib package.
 Group: Libraries
@@ -89,13 +80,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505000569
-export CFLAGS="$CFLAGS -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -fstack-protector-strong "
-export FFLAGS="$CFLAGS -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong "
+export SOURCE_DATE_EPOCH=1519052257
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
 %configure --disable-static --with-default-dict-path=/usr/share/cracklib/pw_dict
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -105,7 +96,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1505000569
+export SOURCE_DATE_EPOCH=1519052257
 rm -rf %{buildroot}
 %make_install
 %find_lang cracklib
@@ -138,10 +129,6 @@ rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
 %defattr(-,root,root,-)
 /usr/include/*.h
 /usr/lib64/libcrack.so
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files lib
 %defattr(-,root,root,-)
