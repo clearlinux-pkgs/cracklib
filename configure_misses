@@ -1,3 +1,5 @@
+Configure miss: python
+Configure miss: python2
 Configure miss: python3.6/Python.h usability
 Configure miss: python3.6/Python.h presence
 Configure miss: python3.6/Python.h
