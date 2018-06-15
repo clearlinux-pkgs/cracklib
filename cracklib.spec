@@ -15,7 +15,7 @@ Requires: cracklib-lib
 Requires: cracklib-data
 Requires: cracklib-locales
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 Patch1: cve-2016-6318.patch
 
