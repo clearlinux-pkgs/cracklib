@@ -1,5 +1,5 @@
 chmod 755 util/cracklib-format util/cracklib-packer
-util/cracklib-format dicts/cracklib-small | util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
-gzip -9 %{buildroot}%{_datadir}/cracklib/pw_dict.pwd
-rm %{buildroot}%{_datadir}/cracklib/cracklib-small
-rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
+util/cracklib-format dicts/cracklib-small | util/cracklib-packer %{buildroot}/usr/share/cracklib/pw_dict
+#gzip -9 %{buildroot}/usr/share/cracklib/pw_dict.pwd
+rm %{buildroot}/usr/share/cracklib/cracklib-small
+rm %{buildroot}/usr/share/cracklib/cracklib.magic

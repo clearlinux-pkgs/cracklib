@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.6
-Release  : 39
+Release  : 40
 URL      : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/cracklib-2.9.6/cracklib-2.9.6.tar.gz
 Summary  : No detailed summary available
@@ -15,7 +15,6 @@ Requires: cracklib-data = %{version}-%{release}
 Requires: cracklib-lib = %{version}-%{release}
 Requires: cracklib-license = %{version}-%{release}
 Requires: cracklib-locales = %{version}-%{release}
-BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
 BuildRequires : python3-dev
 Patch1: cve-2016-6318.patch
@@ -91,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546619090
+export SOURCE_DATE_EPOCH=1546619253
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -107,7 +106,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1546619090
+export SOURCE_DATE_EPOCH=1546619253
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cracklib
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/cracklib/COPYING.LIB
@@ -116,10 +115,9 @@ cp README-LICENSE %{buildroot}/usr/share/package-licenses/cracklib/README-LICENS
 %find_lang cracklib
 ## install_append content
 chmod 755 util/cracklib-format util/cracklib-packer
-util/cracklib-format dicts/cracklib-small | util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
-gzip -9 %{buildroot}%{_datadir}/cracklib/pw_dict.pwd
-rm %{buildroot}%{_datadir}/cracklib/cracklib-small
-rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
+util/cracklib-format dicts/cracklib-small | util/cracklib-packer %{buildroot}/usr/share/cracklib/pw_dict
+rm %{buildroot}/usr/share/cracklib/cracklib-small
+rm %{buildroot}/usr/share/cracklib/cracklib.magic
 ## install_append end
 
 %files
@@ -136,7 +134,7 @@ rm %{buildroot}%{_datadir}/cracklib/cracklib.magic
 %files data
 %defattr(-,root,root,-)
 /usr/share/cracklib/pw_dict.hwm
-/usr/share/cracklib/pw_dict.pwd.gz
+/usr/share/cracklib/pw_dict.pwd
 /usr/share/cracklib/pw_dict.pwi
 
 %files dev
