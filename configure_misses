@@ -1,7 +1,6 @@
 Configure miss: zlib.h usability
 Configure miss: zlib.h presence
 Configure miss: zlib.h
-Configure miss: library containing gzopen
 Configure miss: python3.7/Python.h usability
 Configure miss: python3.7/Python.h presence
 Configure miss: python3.7/Python.h
