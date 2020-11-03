@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.7
-Release  : 44
+Release  : 45
 URL      : https://github.com/cracklib/cracklib/releases/download/v2.9.7/cracklib-2.9.7.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/v2.9.7/cracklib-2.9.7.tar.gz
 Summary  : No detailed summary available
@@ -82,17 +82,18 @@ locales components for the cracklib package.
 
 %prep
 %setup -q -n cracklib-2.9.7
+cd %{_builddir}/cracklib-2.9.7
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569349039
+export SOURCE_DATE_EPOCH=1604365164
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --with-default-dict-path=/usr/share/cracklib/pw_dict
 make  %{?_smp_mflags}
@@ -102,19 +103,20 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1569349039
+export SOURCE_DATE_EPOCH=1604365164
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cracklib
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/cracklib/COPYING.LIB
-cp README-LICENSE %{buildroot}/usr/share/package-licenses/cracklib/README-LICENSE
+cp %{_builddir}/cracklib-2.9.7/COPYING.LIB %{buildroot}/usr/share/package-licenses/cracklib/3ac522f07da0f346b37b29cd73a60f79e992ffba
+cp %{_builddir}/cracklib-2.9.7/README-LICENSE %{buildroot}/usr/share/package-licenses/cracklib/30d6e5f96b35b286ffd2336213552240b2835b46
 %make_install
 %find_lang cracklib
 ## install_append content
 chmod 755 util/cracklib-format util/cracklib-packer
 util/cracklib-format dicts/cracklib-small | util/cracklib-packer %{buildroot}/usr/share/cracklib/pw_dict
+#gzip -9 %{buildroot}/usr/share/cracklib/pw_dict.pwd
 rm %{buildroot}/usr/share/cracklib/cracklib-small
 rm %{buildroot}/usr/share/cracklib/cracklib.magic
 ## install_append end
@@ -149,8 +151,8 @@ rm %{buildroot}/usr/share/cracklib/cracklib.magic
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/cracklib/COPYING.LIB
-/usr/share/package-licenses/cracklib/README-LICENSE
+/usr/share/package-licenses/cracklib/30d6e5f96b35b286ffd2336213552240b2835b46
+/usr/share/package-licenses/cracklib/3ac522f07da0f346b37b29cd73a60f79e992ffba
 
 %files locales -f cracklib.lang
 %defattr(-,root,root,-)
