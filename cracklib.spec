@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.7
-Release  : 47
+Release  : 48
 URL      : https://github.com/cracklib/cracklib/releases/download/v2.9.7/cracklib-2.9.7.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/v2.9.7/cracklib-2.9.7.tar.gz
 Summary  : No detailed summary available
