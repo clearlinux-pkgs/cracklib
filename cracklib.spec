@@ -4,7 +4,7 @@
 #
 Name     : cracklib
 Version  : 2.9.7
-Release  : 48
+Release  : 49
 URL      : https://github.com/cracklib/cracklib/releases/download/v2.9.7/cracklib-2.9.7.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/v2.9.7/cracklib-2.9.7.tar.gz
 Summary  : No detailed summary available
@@ -91,10 +91,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
 export SOURCE_DATE_EPOCH=1604365164
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 %configure --disable-static --with-default-dict-path=/usr/share/cracklib/pw_dict
 make  %{?_smp_mflags}
 
