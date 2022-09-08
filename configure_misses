@@ -1,6 +1,6 @@
-Configure miss: zlib.h usability
-Configure miss: zlib.h presence
+Configure miss: python3.1/Python.h
+Configure miss: python3.1/Python.h presence
+Configure miss: python3.1/Python.h usability
 Configure miss: zlib.h
-Configure miss: python3.8/Python.h usability
-Configure miss: python3.8/Python.h presence
-Configure miss: python3.8/Python.h
+Configure miss: zlib.h presence
+Configure miss: zlib.h usability
