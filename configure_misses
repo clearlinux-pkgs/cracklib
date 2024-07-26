@@ -1,6 +1,2 @@
-Configure miss: python3.1/Python.h
-Configure miss: python3.1/Python.h presence
-Configure miss: python3.1/Python.h usability
+Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: zlib.h
-Configure miss: zlib.h presence
-Configure miss: zlib.h usability

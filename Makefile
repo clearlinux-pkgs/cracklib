@@ -1,5 +1,5 @@
 PKG_NAME := cracklib
-URL = https://github.com/cracklib/cracklib/releases/download/v2.9.11/cracklib-2.9.11.tar.gz
+URL = https://github.com/cracklib/cracklib/releases/download/v2.10.1/cracklib-2.10.1.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
