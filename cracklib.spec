@@ -9,7 +9,7 @@
 #
 Name     : cracklib
 Version  : 2.10.2
-Release  : 53
+Release  : 54
 URL      : https://github.com/cracklib/cracklib/releases/download/v2.10.2/cracklib-2.10.2.tar.gz
 Source0  : https://github.com/cracklib/cracklib/releases/download/v2.10.2/cracklib-2.10.2.tar.gz
 Source1  : https://github.com/cracklib/cracklib/releases/download/v2.10.2/cracklib-2.10.2.tar.gz.asc
